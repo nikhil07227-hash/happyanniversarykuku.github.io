@@ -1,299 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary bbu ❤️</title>
+  <meta charset="UTF-8">
+  <title>Happy Anniversary bbu ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-    margin:0;
-    padding:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ff4da6,#ff99cc);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
-}
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-/* CARD */
-.card-container{
-    perspective:1200px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-.card{
-    width:320px;
-    height:460px;
-    position:relative;
-    transform-style:preserve-3d;
-    transition:transform 1s;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+      animation: bgMove 10s infinite alternate;
+      overflow: hidden;
+    }
 
-.card.open{
-    transform:rotateY(180deg);
-}
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
 
-.card-face{
-    position:absolute;
-    width:100%;
-    height:100%;
-    backface-visibility:hidden;
-    border-radius:20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
-}
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 420px;
+      width: 90%;
+      position: relative;
+    }
 
-/* FRONT */
-.front{
-    background:white;
-    cursor:pointer;
-}
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      color: #ff0055;
+    }
 
-.front h2{
-    color:#ff1a8c;
-}
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 4px;
+      margin-bottom: 16px;
+      color: #ff4b8b;
+    }
 
-/* BACK */
-.back{
-    background:rgba(255,255,255,0.1);
-    backdrop-filter:blur(10px);
-    transform:rotateY(180deg);
-    padding:20px;
-    text-align:center;
-    overflow:hidden;
-}
+    p {
+      margin: 6px 0;
+      color: #4a4a4a;
+    }
 
-/* ANNIVERSARY TITLE */
-.anniversary-title{
-    font-size:24px;
-    color:white;
-    margin-bottom:5px;
-    animation:glowTitle 2s infinite alternate;
-}
+    .tap-button {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: #ffffffcc;
+      box-shadow: 0 0 15px #ff7eb3;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 12px;
+      font-weight: 500;
+    }
 
-@keyframes glowTitle{
-    from{text-shadow:0 0 10px #ff4da6;}
-    to{text-shadow:0 0 25px #ff66cc;}
-}
+    .tap-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff4b8b;
+    }
 
-/* GLOW NAME */
-.glow-name{
-    font-size:28px;
-    font-weight:bold;
-    color:white;
-    animation:glowPulse 2s infinite alternate;
-}
+    .cake {
+      width: 140px;
+      height: 140px;
+      margin: 18px auto 8px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #ff9a9e, #fecfef);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      cursor: pointer;
+      animation: float 2s infinite ease-in-out;
+      position: relative;
+    }
 
-@keyframes glowPulse{
-    from{text-shadow:0 0 10px #ff4da6;}
-    to{text-shadow:0 0 35px #ff66cc;}
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
 
-/* LOVE LINE */
-.love-line{
-    margin-top:5px;
-    font-size:18px;
-    color:white;
-    animation:floatText 3s infinite ease-in-out;
-}
+    .hint {
+      font-size: 0.9rem;
+      color: #555;
+    }
 
-@keyframes floatText{
-    0%{transform:translateY(0px);}
-    50%{transform:translateY(-6px);}
-    100%{transform:translateY(0px);}
-}
+    /* Popup message */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
 
-/* BANNER */
-.banner{
-    margin-top:15px;
-    font-size:14px;
-    color:white;
-    animation:pulse 1.5s infinite;
-}
+    .popup-content {
+      background: #fff;
+      padding: 20px 18px;
+      border-radius: 18px;
+      max-width: 360px;
+      width: 85%;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
 
-@keyframes pulse{
-    0%{opacity:0.6;}
-    50%{opacity:1;}
-    100%{opacity:0.6;}
-}
+    .popup-content h3 {
+      margin-top: 0;
+      color: #ff0055;
+    }
 
-/* CAKE */
-.cake{
-    position:relative;
-    width:200px;
-    height:200px;
-    margin-top:15px;
-    cursor:pointer;
-}
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ff4b8b;
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+    }
 
-/* LAYERS */
-.layer{
-    position:absolute;
-    border-radius:20px;
-}
+    .close-btn:hover {
+      background: #ff0055;
+    }
 
-.layer-bottom{
-    bottom:0;
-    width:200px;
-    height:70px;
-    background:#ff66b2;
-}
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      font-size: 18px;
+      color: #ff4b8b;
+      animation: rise 4s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.layer-middle{
-    bottom:60px;
-    width:160px;
-    height:60px;
-    left:20px;
-    background:#ff3385;
-}
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.6); opacity: 0; }
+    }
 
-.layer-top{
-    bottom:115px;
-    width:120px;
-    height:50px;
-    left:40px;
-    background:#ff1a75;
-}
-
-/* DRIPS */
-.drip{
-    position:absolute;
-    width:18px;
-    height:25px;
-    background:#fff0f5;
-    border-radius:50%;
-}
-
-.drip1{bottom:50px;left:30px;}
-.drip2{bottom:50px;right:30px;}
-.drip3{bottom:105px;left:90px;}
-
-/* CANDLES */
-.candle{
-    position:absolute;
-    bottom:165px;
-    width:8px;
-    height:30px;
-    background:white;
-    border-radius:4px;
-}
-
-.flame{
-    width:10px;
-    height:18px;
-    background:orange;
-    border-radius:50%;
-    margin:auto;
-    margin-top:-15px;
-    animation:flicker 0.2s infinite alternate;
-}
-
-@keyframes flicker{
-    from{transform:scale(1);}
-    to{transform:scale(1.2);}
-}
-</style>
+    #love-text {
+      min-height: 1.4em;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card-container">
-    <div class="card" id="card">
+  <div class="container">
+    <p class="tap-button" id="openBtn">Tap To Open 💌</p>
 
-        <!-- FRONT -->
-        <div class="card-face front" onclick="openCard()">
-            <h2>Tap To Open 💌</h2>
-        </div>
+    <h1>Happy Anniversary 💖</h1>
+    <h2 id="love-text"></h2>
 
-        <!-- BACK -->
-        <div class="card-face back">
+    <p>bbu 💖</p>
+    <p>Niku ❤️ Kuku</p>
 
-            <div class="anniversary-title">Happy Anniversary 💖</div>
-            <div class="glow-name">bbu 💖</div>
-            <div class="love-line">Niku ❤️ Kuku</div>
-
-            <div class="banner">💨 Tap Cake To Blow Candles 💨</div>
-
-            <div class="cake" onclick="blowCandles()">
-
-                <!-- Candles -->
-                <div class="candle" style="left:35%">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="candle" style="left:50%">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="candle" style="left:65%">
-                    <div class="flame"></div>
-                </div>
-
-                <!-- Layers -->
-                <div class="layer layer-top"></div>
-                <div class="layer layer-middle"></div>
-                <div class="layer layer-bottom"></div>
-
-                <!-- Cream Drips -->
-                <div class="drip drip1"></div>
-                <div class="drip drip2"></div>
-                <div class="drip drip3"></div>
-
-            </div>
-
-        </div>
+    <div class="cake" id="cake">
+      🎂
     </div>
-</div>
+    <p class="hint">Tap Cake To Blow Candles</p>
+  </div>
 
-<script>
-function openCard(){
-    document.getElementById("card").classList.add("open");
-}
+  <!-- Popup message -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h3>Happy Anniversary, Kuku 💘</h3>
+      <p>
+        Thank you for staying with me, for every smile, every late-night talk,  
+        and every little moment that makes my life special with you.
+      </p>
+      <p>
+        I love you more than yesterday and less than tomorrow.  
+        Yours, Niku ❤️
+      </p>
+      <button class="close-btn" id="closePopup">Close</button>
+    </div>
+  </div>
 
-function blowCandles(){
-    document.querySelectorAll(".flame").forEach(f=>{
-        f.style.display="none";
-    });
-    sparkBlast();
-}
-
-function sparkBlast(){
-    for(let i=0;i<180;i++){
-        let spark=document.createElement("div");
-        spark.style.position="fixed";
-        spark.style.width="6px";
-        spark.style.height="6px";
-        spark.style.borderRadius="50%";
-        spark.style.background="hsl("+Math.random()*360+",100%,50%)";
-        spark.style.top="50%";
-        spark.style.left="50%";
-
-        let angle=Math.random()*2*Math.PI;
-        let distance=Math.random()*400;
-
-        spark.style.transition="all 2s ease-out";
-        document.body.appendChild(spark);
-
-        setTimeout(()=>{
-            spark.style.transform=
-                "translate("+
-                Math.cos(angle)*distance+"px,"+
-                Math.sin(angle)*distance+"px)";
-            spark.style.opacity=0;
-        },10);
-
-        setTimeout(()=>{
-            spark.remove();
-        },2000);
+  <script>
+    // Typewriter effect
+    const text = "Niku ❤️ Kuku";
+    let i = 0;
+    function typeWriter() {
+      if (i <= text.length) {
+        document.getElementById("love-text").innerText = text.slice(0, i);
+        i++;
+        setTimeout(typeWriter, 150);
+      }
     }
-}
-</script>
+    window.addEventListener('load', typeWriter);
+
+    // Popup logic
+    const popup = document.getElementById('popup');
+    const openBtn = document.getElementById('openBtn');
+    const closePopup = document.getElementById('closePopup');
+    const cake = document.getElementById('cake');
+
+    openBtn.addEventListener('click', () => {
+      popup.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+
+    // Hearts when tapping cake
+    function createHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      heart.innerText = '❤️';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
+    cake.addEventListener('click', (e) => {
+      const rect = cake.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      for (let j = 0; j < 8; j++) {
+        const offsetX = (Math.random() - 0.5) * 80;
+        const offsetY = (Math.random() - 0.5) * 20;
+        createHeart(centerX + offsetX, centerY + offsetY);
+      }
+    });
+  </script>
 
 </body>
 </html>
-
