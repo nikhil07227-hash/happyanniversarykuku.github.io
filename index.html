@@ -8,7 +8,7 @@
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -22,8 +22,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #ffe1f2, #ffb3c6);
-      animation: bgMove 12s infinite alternate;
+      background: radial-gradient(circle at top, #ffe6fa, #ffb3c6);
+      animation: bgMove 14s infinite alternate;
       overflow: hidden;
     }
 
@@ -36,24 +36,50 @@
       position: relative;
       width: 90%;
       max-width: 430px;
-      padding: 24px 20px 26px;
-      border-radius: 26px;
+      padding: 26px 20px 26px;
+      border-radius: 28px;
       background: rgba(255, 255, 255, 0.22);
       backdrop-filter: blur(16px);
-      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.32);
+      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.35);
       text-align: center;
       overflow: hidden;
     }
 
+    /* small background hearts */
+    .card::before,
+    .card::after {
+      content: "❤";
+      position: absolute;
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.3);
+      z-index: -1;
+    }
+
+    .card::before {
+      top: -10px;
+      left: 12px;
+    }
+
+    .card::after {
+      bottom: -8px;
+      right: 18px;
+    }
+
     .tag {
       font-size: 0.9rem;
-      background: rgba(255,255,255,0.85);
-      display: inline-block;
+      background: rgba(255,255,255,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 6px 16px;
       border-radius: 999px;
       color: #ff4b8b;
       margin-bottom: 10px;
       font-weight: 600;
+    }
+
+    .tag span.icon {
+      animation: bounce 1.1s infinite;
     }
 
     h1 {
@@ -65,14 +91,14 @@
     .sub {
       font-size: 1.15rem;
       color: #ff4b8b;
-      margin-bottom: 0;
-      min-height: 1.3em;
+      min-height: 1.4em;
+      margin-bottom: 2px;
     }
 
     .mini {
       font-size: 0.95rem;
-      color: #555;
-      margin-top: 10px;
+      color: #666;
+      margin-top: 8px;
     }
 
     .names {
@@ -102,7 +128,7 @@
     }
 
     .tap-btn span.emoji {
-      animation: bounce 1s infinite;
+      animation: bounce 1.1s infinite;
     }
 
     @keyframes bounce {
@@ -111,7 +137,7 @@
     }
 
     .tap-btn:hover {
-      transform: translateY(-1px) scale(1.02);
+      transform: translateY(-1px) scale(1.03);
       box-shadow: 0 0 26px rgba(255, 75, 139, 0.95);
     }
 
@@ -125,7 +151,7 @@
       margin-top: 6px;
     }
 
-    /* simple cute cake */
+    /* cute cake */
     .cake {
       margin: 0 auto;
       width: 120px;
@@ -274,19 +300,51 @@
       background: #ff0055;
     }
 
-    /* hearts (for cake and general effect) */
+    /* hearts */
     .heart {
       position: fixed;
       font-size: 18px;
       color: #ff4b8b;
       animation: rise 3.2s linear forwards;
       pointer-events: none;
-      z-index: 0;
+      z-index: 5;
     }
 
     @keyframes rise {
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+    }
+
+    /* sparkles for button */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff, #ffe27a);
+      box-shadow: 0 0 10px #ffe27a;
+      animation: sparklePop 1s ease-out forwards;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    @keyframes sparklePop {
+      0% { transform: scale(0.4); opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .page-heart {
+      position: fixed;
+      font-size: 20px;
+      color: #ff4b8b;
+      animation: pageHeartRise 3.5s linear forwards;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    @keyframes pageHeartRise {
+      0% { transform: translateY(20px) scale(0.9); opacity: 1; }
+      100% { transform: translateY(-140px) scale(1.6); opacity: 0; }
     }
 
     #loveText {
@@ -297,7 +355,10 @@
 <body>
 
   <div class="card">
-    <div class="tag">Tap To Open 💌</div>
+    <div class="tag">
+      <span class="icon">💌</span>
+      <span>Tap To Open 💌</span>
+    </div>
 
     <h1>Happy Anniversary 💖</h1>
     <div class="sub" id="loveText"></div>
@@ -341,7 +402,7 @@
     <div class="popup-inner">
       <h3>Happy Anniversary, Kuku 💘</h3>
       <p>Thank you for every smile, every silly fight,</p>
-      <p>and every small moment that makes my world soft with you.</p>
+      <p>and every little moment that makes my world soft with you.</p>
       <p>Always yours,<br>Niku ❤️</p>
       <button class="close-btn" id="closePopup">Close</button>
     </div>
@@ -360,33 +421,9 @@
     }
     window.addEventListener('load', typeWriter);
 
-    // popup
     const popup = document.getElementById('popup');
     const openBtn = document.getElementById('openBtn');
     const closePopup = document.getElementById('closePopup');
-
-    openBtn.addEventListener('click', () => {
-      popup.style.display = 'flex';
-      // small heart burst when opening
-      const rect = openBtn.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      for (let k = 0; k < 10; k++) {
-        const ox = (Math.random() - 0.5) * 100;
-        const oy = (Math.random() - 0.5) * 40;
-        createHeart(centerX + ox, centerY + oy);
-      }
-    });
-
-    closePopup.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
-
-    popup.addEventListener('click', (e) => {
-      if (e.target === popup) popup.style.display = 'none';
-    });
-
-    // cake & candles
     const cake = document.getElementById('cake');
     const hintText = document.getElementById('hintText');
     let blown = false;
@@ -401,6 +438,55 @@
       setTimeout(() => heart.remove(), 3200);
     }
 
+    function createSparkle(x, y) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = x + 'px';
+      s.style.top = y + 'px';
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 1000);
+    }
+
+    function createPageHeart(x, y) {
+      const h = document.createElement('div');
+      h.className = 'page-heart';
+      h.style.left = x + 'px';
+      h.style.top = y + 'px';
+      h.innerText = '❤️';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 3500);
+    }
+
+    openBtn.addEventListener('click', () => {
+      popup.style.display = 'flex';
+
+      const rect = openBtn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      for (let k = 0; k < 14; k++) {
+        const ox = (Math.random() - 0.5) * rect.width;
+        const oy = (Math.random() - 0.5) * rect.height;
+        createSparkle(centerX + ox, centerY + oy);
+      }
+
+      for (let j = 0; j < 22; j++) {
+        const randX = Math.random() * window.innerWidth;
+        const startY = window.innerHeight - Math.random() * 80;
+        setTimeout(() => {
+          createPageHeart(randX, startY);
+        }, j * 120);
+      }
+    });
+
+    closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) popup.style.display = 'none';
+    });
+
     cake.addEventListener('click', () => {
       const flames = document.querySelectorAll('.flame');
       const rect = cake.getBoundingClientRect();
@@ -412,7 +498,6 @@
         blown = true;
         hintText.innerText = "Candles blown 🎉 Tap again to relight";
 
-        // hearts when blowing candles
         for (let k = 0; k < 12; k++) {
           const ox = (Math.random() - 0.5) * 100;
           const oy = (Math.random() - 0.5) * 30;
@@ -427,3 +512,5 @@
   </script>
 </body>
 </html>
+
+
