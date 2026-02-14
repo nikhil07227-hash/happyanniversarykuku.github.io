@@ -8,7 +8,7 @@
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -22,8 +22,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
-      animation: bgMove 10s infinite alternate;
+      background: radial-gradient(circle at top, #ffe1f2, #ffb3c6);
+      animation: bgMove 12s infinite alternate;
       overflow: hidden;
     }
 
@@ -32,127 +32,159 @@
       100% { background-position: 100% 100%; }
     }
 
-    .container {
-      text-align: center;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 24px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 420px;
-      width: 90%;
+    .card {
       position: relative;
+      width: 90%;
+      max-width: 420px;
+      padding: 22px 20px 26px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.28);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .tag {
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.7);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: #ff4b8b;
+      margin-bottom: 6px;
     }
 
     h1 {
-      font-size: 1.9rem;
-      margin-bottom: 8px;
+      margin: 4px 0 6px;
+      font-size: 1.8rem;
       color: #ff0055;
     }
 
-    h2 {
-      font-size: 1.4rem;
-      margin-top: 4px;
-      margin-bottom: 16px;
+    .sub {
+      font-size: 1.1rem;
       color: #ff4b8b;
+      margin-bottom: 2px;
     }
 
-    p {
-      margin: 6px 0;
-      color: #4a4a4a;
+    .names {
+      margin-top: 8px;
+      font-weight: 600;
+      color: #ff0055;
+      font-size: 1.05rem;
     }
 
-    .tap-button {
-      display: inline-block;
-      padding: 12px 24px;
+    .mini {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .tap-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
       border-radius: 999px;
-      background: #ffffffcc;
-      box-shadow: 0 0 15px #ff7eb3;
+      background: #ffffffdd;
+      color: #ff0055;
+      font-weight: 600;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      margin-top: 12px;
-      font-weight: 500;
+      box-shadow: 0 0 18px rgba(255, 75, 139, 0.6);
+      border: none;
+      outline: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      margin-bottom: 10px;
     }
 
-    .tap-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #ff4b8b;
+    .tap-btn span.emoji {
+      animation: bounce 1s infinite;
     }
 
-    /* Cake drawing */
-    .cake-wrapper {
-      margin: 18px auto 8px;
-      display: flex;
-      justify-content: center;
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .tap-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 22px rgba(255, 75, 139, 0.9);
+    }
+
+    .cake-area {
+      margin-top: 10px;
+    }
+
+    .cake-text {
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 4px;
     }
 
     .cake {
+      margin: 0 auto;
+      width: 120px;
+      height: 110px;
       position: relative;
-      width: 180px;
-      height: 150px;
       cursor: pointer;
+      animation: float 2.2s infinite ease-in-out;
     }
 
-    .cake-layer {
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .cake-base {
       position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 46px;
+      background: linear-gradient(145deg, #ff9a9e, #fecfef);
+      border-radius: 18px;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.06);
+    }
+
+    .cake-top {
+      position: absolute;
+      bottom: 34px;
+      width: 80%;
       left: 50%;
       transform: translateX(-50%);
-      background: #ff9a9e;
-      border-radius: 20px;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+      height: 32px;
+      background: linear-gradient(145deg, #ffe5ff, #ffd0e8);
+      border-radius: 16px;
     }
 
-    .layer-bottom {
-      bottom: 0;
-      width: 180px;
-      height: 60px;
-      background: linear-gradient(145deg, #ff9a9e, #fecfef);
-    }
-
-    .layer-middle {
-      bottom: 45px;
-      width: 150px;
-      height: 45px;
-      background: linear-gradient(145deg, #ffc3a0, #ffafbd);
-    }
-
-    .layer-top {
-      bottom: 80px;
-      width: 120px;
-      height: 35px;
-      background: linear-gradient(145deg, #ffe5e5, #ffd1ff);
-    }
-
-    .icing-drip {
+    .icing {
       position: absolute;
       top: 0;
       left: 10px;
       right: 10px;
-      height: 18px;
-      background: #ffffffdd;
+      height: 14px;
+      background: #ffffffee;
       border-radius: 0 0 12px 12px;
-      box-shadow: 0 2px 0 rgba(255,255,255,0.6);
     }
 
-    /* Candles */
     .candle {
       position: absolute;
-      width: 10px;
-      height: 30px;
+      width: 8px;
+      height: 26px;
       background: #fff;
       border-radius: 4px;
-      top: 35px;
+      top: 2px;
       left: 50%;
       transform: translateX(-50%);
-      box-shadow: 0 0 3px rgba(0,0,0,0.1);
+      box-shadow: 0 0 2px rgba(0,0,0,0.10);
     }
 
-    .candle:nth-child(2) { /* left candle */
-      transform: translateX(-70px);
+    .candle.left {
+      transform: translateX(-30px);
     }
 
-    .candle:nth-child(3) { /* right candle */
-      transform: translateX(50px);
+    .candle.right {
+      transform: translateX(20px);
     }
 
     .candle-stripes {
@@ -167,16 +199,16 @@
         transparent 6px
       );
       border-radius: 4px;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .flame {
       position: absolute;
-      width: 14px;
-      height: 22px;
-      border-radius: 50% 50% 50% 50%;
+      width: 12px;
+      height: 18px;
+      border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #fff, #ffd35c 40%, #ff7a00 70%, transparent 75%);
-      top: -18px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
       animation: flicker 0.25s infinite alternate;
@@ -188,95 +220,105 @@
       100% { transform: translateX(-50%) scale(1.05); opacity: 0.85; }
     }
 
-    .hint {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    /* Popup message */
+    /* Popup */
     .popup {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.55);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 10;
     }
 
-    .popup-content {
+    .popup-inner {
       background: #fff;
-      padding: 20px 18px;
-      border-radius: 18px;
-      max-width: 360px;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
       width: 85%;
+      max-width: 360px;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.28);
     }
 
-    .popup-content h3 {
-      margin-top: 0;
+    .popup-inner h3 {
+      margin: 4px 0 6px;
       color: #ff0055;
+      font-size: 1.2rem;
+    }
+
+    .popup-inner p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      color: #444;
     }
 
     .close-btn {
       margin-top: 10px;
-      padding: 8px 16px;
+      padding: 7px 18px;
       border-radius: 999px;
       border: none;
       background: #ff4b8b;
-      color: white;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
-      font-weight: 500;
     }
 
     .close-btn:hover {
       background: #ff0055;
     }
 
-    /* Floating hearts when blowing candles */
+    /* hearts */
     .heart {
       position: fixed;
       font-size: 18px;
       color: #ff4b8b;
-      animation: rise 4s linear forwards;
+      animation: rise 3.2s linear forwards;
       pointer-events: none;
       z-index: 0;
     }
 
     @keyframes rise {
       0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-120px) scale(1.6); opacity: 0; }
+      100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
     }
 
-    #love-text {
-      min-height: 1.4em;
+    #loveText {
+      min-height: 1.3em;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <p class="tap-button" id="openBtn">Tap To Open 💌</p>
+  <div class="card">
+    <div class="tag">Tap To Open 💌</div>
 
     <h1>Happy Anniversary 💖</h1>
-    <h2 id="love-text"></h2>
+    <div class="sub" id="loveText"></div>
 
-    <p>bbu 💖</p>
-    <p>Niku ❤️ Kuku</p>
+    <div class="mini">bbu 💖</div>
+    <div class="names">Niku ❤️ Kuku</div>
 
-    <div class="cake-wrapper">
+    <button class="tap-btn" id="openBtn">
+      <span class="emoji">💌</span>
+      <span>Open little surprise</span>
+    </button>
+
+    <div class="cake-area">
       <div class="cake" id="cake">
-        <div class="cake-layer layer-bottom"></div>
-        <div class="cake-layer layer-middle">
-          <div class="icing-drip"></div>
+        <div class="cake-top">
+          <div class="icing"></div>
         </div>
-        <div class="cake-layer layer-top">
-          <div class="icing-drip"></div>
-        </div>
+        <div class="cake-base"></div>
 
-        <!-- candles: three (middle is main) -->
-        <div class="candle">
+        <div class="candle left">
           <div class="candle-stripes"></div>
           <div class="flame"></div>
         </div>
@@ -284,45 +326,42 @@
           <div class="candle-stripes"></div>
           <div class="flame"></div>
         </div>
-        <div class="candle">
+        <div class="candle right">
           <div class="candle-stripes"></div>
           <div class="flame"></div>
         </div>
       </div>
+      <div class="cake-text" id="hintText">Tap Cake To Blow Candles 💨</div>
     </div>
-    <p class="hint" id="hintText">Tap Cake To Blow Candles</p>
+
+    <div class="hint">Made with love by Niku, just for Kuku ✨</div>
   </div>
 
-  <!-- Popup message -->
+  <!-- Popup -->
   <div class="popup" id="popup">
-    <div class="popup-content">
+    <div class="popup-inner">
       <h3>Happy Anniversary, Kuku 💘</h3>
-      <p>
-        Thank you for staying with me, for every smile, every late-night talk,
-        and every little moment that makes my life special with you.
-      </p>
-      <p>
-        I love you more than yesterday and less than tomorrow.
-        Yours, Niku ❤️
-      </p>
+      <p>Thank you for staying with me, for every smile, every silly fight,</p>
+      <p>and every moment that makes my small world feel complete with you.</p>
+      <p>Always yours,<br>Niku ❤️</p>
       <button class="close-btn" id="closePopup">Close</button>
     </div>
   </div>
 
   <script>
-    // Typewriter effect
-    const text = "Niku ❤️ Kuku";
+    // typewriter for "Niku ❤️ Kuku"
+    const txt = "Niku ❤️ Kuku";
     let i = 0;
     function typeWriter() {
-      if (i <= text.length) {
-        document.getElementById("love-text").innerText = text.slice(0, i);
+      if (i <= txt.length) {
+        document.getElementById('loveText').innerText = txt.slice(0, i);
         i++;
-        setTimeout(typeWriter, 150);
+        setTimeout(typeWriter, 140);
       }
     }
     window.addEventListener('load', typeWriter);
 
-    // Popup logic
+    // popup
     const popup = document.getElementById('popup');
     const openBtn = document.getElementById('openBtn');
     const closePopup = document.getElementById('closePopup');
@@ -336,15 +375,13 @@
     });
 
     popup.addEventListener('click', (e) => {
-      if (e.target === popup) {
-        popup.style.display = 'none';
-      }
+      if (e.target === popup) popup.style.display = 'none';
     });
 
-    // Cake and candles logic
+    // cake & candles
     const cake = document.getElementById('cake');
     const hintText = document.getElementById('hintText');
-    let candlesBlown = false;
+    let blown = false;
 
     function createHeart(x, y) {
       const heart = document.createElement('div');
@@ -353,42 +390,32 @@
       heart.style.top = y + 'px';
       heart.innerText = '❤️';
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 4000);
+      setTimeout(() => heart.remove(), 3200);
     }
 
     cake.addEventListener('click', () => {
       const flames = document.querySelectorAll('.flame');
+      const rect = cake.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + 10;
 
-      if (!candlesBlown) {
-        // blow out: hide flames
-        flames.forEach(f => {
-          f.style.opacity = '0';
-        });
-        candlesBlown = true;
-        hintText.innerText = "Candles blown 🎉 (tap again to relight)";
+      if (!blown) {
+        flames.forEach(f => f.style.opacity = '0');
+        blown = true;
+        hintText.innerText = "Candles blown 🎉 Tap again to relight";
 
-        // hearts like celebration
-        const rect = cake.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + 20; // near candles
-        for (let j = 0; j < 10; j++) {
-          const offsetX = (Math.random() - 0.5) * 100;
-          const offsetY = (Math.random() - 0.5) * 30;
-          createHeart(centerX + offsetX, centerY + offsetY);
+        for (let k = 0; k < 10; k++) {
+          const ox = (Math.random() - 0.5) * 100;
+          const oy = (Math.random() - 0.5) * 30;
+          createHeart(centerX + ox, centerY + oy);
         }
       } else {
-        // relight
-        flames.forEach(f => {
-          f.style.opacity = '1';
-        });
-        candlesBlown = false;
-        hintText.innerText = "Tap Cake To Blow Candles";
+        flames.forEach(f => f.style.opacity = '1');
+        blown = false;
+        hintText.innerText = "Tap Cake To Blow Candles 💨";
       }
     });
   </script>
-
 </body>
 </html>
+
