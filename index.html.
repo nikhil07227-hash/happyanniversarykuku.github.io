@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Anniversary bbu ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #ffe1f2, #ffb3c6);
+      animation: bgMove 12s infinite alternate;
+      overflow: hidden;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    .card {
+      position: relative;
+      width: 90%;
+      max-width: 430px;
+      padding: 24px 20px 26px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.32);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .tag {
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.85);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 999px;
+      color: #ff4b8b;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 4px 0 6px;
+      font-size: 1.9rem;
+      color: #ff0055;
+    }
+
+    .sub {
+      font-size: 1.15rem;
+      color: #ff4b8b;
+      margin-bottom: 0;
+      min-height: 1.3em;
+    }
+
+    .mini {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .names {
+      margin-top: 4px;
+      font-weight: 600;
+      color: #ff0055;
+      font-size: 1.05rem;
+    }
+
+    .tap-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #ffffffee;
+      color: #ff0055;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 75, 139, 0.7);
+      border: none;
+      outline: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      margin-top: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tap-btn span.emoji {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .tap-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 26px rgba(255, 75, 139, 0.95);
+    }
+
+    .cake-area {
+      margin-top: 8px;
+    }
+
+    .cake-text {
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 6px;
+    }
+
+    /* simple cute cake */
+    .cake {
+      margin: 0 auto;
+      width: 120px;
+      height: 110px;
+      position: relative;
+      cursor: pointer;
+      animation: float 2.2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .cake-base {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 46px;
+      background: linear-gradient(145deg, #ff9a9e, #fecfef);
+      border-radius: 18px;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.06);
+    }
+
+    .cake-top {
+      position: absolute;
+      bottom: 34px;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 32px;
+      background: linear-gradient(145deg, #ffe5ff, #ffd0e8);
+      border-radius: 16px;
+    }
+
+    .icing {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      height: 14px;
+      background: #ffffffee;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .candle {
+      position: absolute;
+      width: 8px;
+      height: 26px;
+      background: #fff;
+      border-radius: 4px;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 2px rgba(0,0,0,0.10);
+    }
+
+    .candle.left { transform: translateX(-30px); }
+    .candle.right { transform: translateX(20px); }
+
+    .candle-stripes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        #ff4b8b,
+        #ff4b8b 3px,
+        transparent 3px,
+        transparent 6px
+      );
+      border-radius: 4px;
+      opacity: 0.75;
+    }
+
+    .flame {
+      position: absolute;
+      width: 12px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #ffd35c 40%, #ff7a00 70%, transparent 75%);
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.25s infinite alternate;
+      transform-origin: bottom center;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1.05); opacity: 0.85; }
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .popup-inner {
+      background: #fff;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      width: 85%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.28);
+    }
+
+    .popup-inner h3 {
+      margin: 4px 0 6px;
+      color: #ff0055;
+      font-size: 1.2rem;
+    }
+
+    .popup-inner p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      border: none;
+      background: #ff4b8b;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background: #ff0055;
+    }
+
+    /* hearts (for cake and general effect) */
+    .heart {
+      position: fixed;
+      font-size: 18px;
+      color: #ff4b8b;
+      animation: rise 3.2s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+    }
+
+    #loveText {
+      min-height: 1.3em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="tag">Tap To Open 💌</div>
+
+    <h1>Happy Anniversary 💖</h1>
+    <div class="sub" id="loveText"></div>
+
+    <div class="mini">bbu 💖</div>
+    <div class="names">Niku ❤️ Kuku</div>
+
+    <button class="tap-btn" id="openBtn">
+      <span class="emoji">💌</span>
+      <span>Open little surprise</span>
+    </button>
+
+    <div class="cake-area">
+      <div class="cake" id="cake">
+        <div class="cake-top">
+          <div class="icing"></div>
+        </div>
+        <div class="cake-base"></div>
+
+        <div class="candle left">
+          <div class="candle-stripes"></div>
+          <div class="flame"></div>
+        </div>
+        <div class="candle">
+          <div class="candle-stripes"></div>
+          <div class="flame"></div>
+        </div>
+        <div class="candle right">
+          <div class="candle-stripes"></div>
+          <div class="flame"></div>
+        </div>
+      </div>
+      <div class="cake-text" id="hintText">Tap Cake To Blow Candles 💨</div>
+    </div>
+
+    <div class="hint">Made with love by Niku, just for Kuku ✨</div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-inner">
+      <h3>Happy Anniversary, Kuku 💘</h3>
+      <p>Thank you for every smile, every silly fight,</p>
+      <p>and every small moment that makes my world soft with you.</p>
+      <p>Always yours,<br>Niku ❤️</p>
+      <button class="close-btn" id="closePopup">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // typewriter for "Niku ❤️ Kuku"
+    const txt = "Niku ❤️ Kuku";
+    let i = 0;
+    function typeWriter() {
+      if (i <= txt.length) {
+        document.getElementById('loveText').innerText = txt.slice(0, i);
+        i++;
+        setTimeout(typeWriter, 140);
+      }
+    }
+    window.addEventListener('load', typeWriter);
+
+    // popup
+    const popup = document.getElementById('popup');
+    const openBtn = document.getElementById('openBtn');
+    const closePopup = document.getElementById('closePopup');
+
+    openBtn.addEventListener('click', () => {
+      popup.style.display = 'flex';
+      // small heart burst when opening
+      const rect = openBtn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      for (let k = 0; k < 10; k++) {
+        const ox = (Math.random() - 0.5) * 100;
+        const oy = (Math.random() - 0.5) * 40;
+        createHeart(centerX + ox, centerY + oy);
+      }
+    });
+
+    closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) popup.style.display = 'none';
+    });
+
+    // cake & candles
+    const cake = document.getElementById('cake');
+    const hintText = document.getElementById('hintText');
+    let blown = false;
+
+    function createHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      heart.innerText = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3200);
+    }
+
+    cake.addEventListener('click', () => {
+      const flames = document.querySelectorAll('.flame');
+      const rect = cake.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + 10;
+
+      if (!blown) {
+        flames.forEach(f => f.style.opacity = '0');
+        blown = true;
+        hintText.innerText = "Candles blown 🎉 Tap again to relight";
+
+        // hearts when blowing candles
+        for (let k = 0; k < 12; k++) {
+          const ox = (Math.random() - 0.5) * 100;
+          const oy = (Math.random() - 0.5) * 30;
+          createHeart(centerX + ox, centerY + oy);
+        }
+      } else {
+        flames.forEach(f => f.style.opacity = '1');
+        blown = false;
+        hintText.innerText = "Tap Cake To Blow Candles 💨";
+      }
+    });
+  </script>
+</body>
+</html>
