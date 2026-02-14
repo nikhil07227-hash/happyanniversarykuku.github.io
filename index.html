@@ -35,67 +35,70 @@
     .card {
       position: relative;
       width: 90%;
-      max-width: 420px;
-      padding: 22px 20px 26px;
+      max-width: 430px;
+      padding: 24px 20px 26px;
       border-radius: 26px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.28);
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(255, 75, 139, 0.32);
       text-align: center;
       overflow: hidden;
     }
 
     .tag {
-      font-size: 0.82rem;
-      background: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.85);
       display: inline-block;
-      padding: 4px 12px;
+      padding: 6px 16px;
       border-radius: 999px;
       color: #ff4b8b;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
 
     h1 {
       margin: 4px 0 6px;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       color: #ff0055;
     }
 
     .sub {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #ff4b8b;
-      margin-bottom: 2px;
-    }
-
-    .names {
-      margin-top: 8px;
-      font-weight: 600;
-      color: #ff0055;
-      font-size: 1.05rem;
+      margin-bottom: 0;
+      min-height: 1.3em;
     }
 
     .mini {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #555;
-      margin-bottom: 14px;
+      margin-top: 10px;
+    }
+
+    .names {
+      margin-top: 4px;
+      font-weight: 600;
+      color: #ff0055;
+      font-size: 1.05rem;
     }
 
     .tap-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 999px;
-      background: #ffffffdd;
+      background: #ffffffee;
       color: #ff0055;
       font-weight: 600;
       font-size: 0.95rem;
       cursor: pointer;
-      box-shadow: 0 0 18px rgba(255, 75, 139, 0.6);
+      box-shadow: 0 0 20px rgba(255, 75, 139, 0.7);
       border: none;
       outline: none;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      margin-bottom: 10px;
+      margin-top: 14px;
+      margin-bottom: 12px;
     }
 
     .tap-btn span.emoji {
@@ -109,19 +112,20 @@
 
     .tap-btn:hover {
       transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 0 22px rgba(255, 75, 139, 0.9);
+      box-shadow: 0 0 26px rgba(255, 75, 139, 0.95);
     }
 
     .cake-area {
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .cake-text {
       font-size: 0.9rem;
       color: #444;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
+    /* simple cute cake */
     .cake {
       margin: 0 auto;
       width: 120px;
@@ -179,13 +183,8 @@
       box-shadow: 0 0 2px rgba(0,0,0,0.10);
     }
 
-    .candle.left {
-      transform: translateX(-30px);
-    }
-
-    .candle.right {
-      transform: translateX(20px);
-    }
+    .candle.left { transform: translateX(-30px); }
+    .candle.right { transform: translateX(20px); }
 
     .candle-stripes {
       position: absolute;
@@ -218,6 +217,12 @@
     @keyframes flicker {
       0% { transform: translateX(-50%) scale(1); opacity: 1; }
       100% { transform: translateX(-50%) scale(1.05); opacity: 0.85; }
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 6px;
     }
 
     /* Popup */
@@ -269,7 +274,7 @@
       background: #ff0055;
     }
 
-    /* hearts */
+    /* hearts (for cake and general effect) */
     .heart {
       position: fixed;
       font-size: 18px;
@@ -286,12 +291,6 @@
 
     #loveText {
       min-height: 1.3em;
-    }
-
-    .hint {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 4px;
     }
   </style>
 </head>
@@ -341,8 +340,8 @@
   <div class="popup" id="popup">
     <div class="popup-inner">
       <h3>Happy Anniversary, Kuku 💘</h3>
-      <p>Thank you for staying with me, for every smile, every silly fight,</p>
-      <p>and every moment that makes my small world feel complete with you.</p>
+      <p>Thank you for every smile, every silly fight,</p>
+      <p>and every small moment that makes my world soft with you.</p>
       <p>Always yours,<br>Niku ❤️</p>
       <button class="close-btn" id="closePopup">Close</button>
     </div>
@@ -368,6 +367,15 @@
 
     openBtn.addEventListener('click', () => {
       popup.style.display = 'flex';
+      // small heart burst when opening
+      const rect = openBtn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      for (let k = 0; k < 10; k++) {
+        const ox = (Math.random() - 0.5) * 100;
+        const oy = (Math.random() - 0.5) * 40;
+        createHeart(centerX + ox, centerY + oy);
+      }
     });
 
     closePopup.addEventListener('click', () => {
@@ -404,7 +412,8 @@
         blown = true;
         hintText.innerText = "Candles blown 🎉 Tap again to relight";
 
-        for (let k = 0; k < 10; k++) {
+        // hearts when blowing candles
+        for (let k = 0; k < 12; k++) {
           const ox = (Math.random() - 0.5) * 100;
           const oy = (Math.random() - 0.5) * 30;
           createHeart(centerX + ox, centerY + oy);
@@ -418,4 +427,3 @@
   </script>
 </body>
 </html>
-
